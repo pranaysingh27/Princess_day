@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8cde1">
+<meta name="description" content="A tiny magical Princess Day surprise for Aastha.">
+<title>Aastha's Little Kingdom 👑</title>
+<style>
+  :root{--pink:#f8cde1;--rose:#ef8db7;--deep:#a84679;--ink:#5f3151;--cream:#fff9fc;--gold:#f3cf78}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff 0 3%,transparent 24%),linear-gradient(145deg,#fff5fa,#f8cde1 48%,#e9d8ff);overflow-x:hidden}
+  button{font:inherit;cursor:pointer}
+  .sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+  .spark{position:absolute;color:#fff8cf;opacity:.8;animation:twinkle 2.5s ease-in-out infinite alternate}
+  @keyframes twinkle{from{transform:scale(.7) rotate(0);opacity:.35}to{transform:scale(1.2) rotate(35deg);opacity:1}}
+  .wrap{position:relative;z-index:1;width:min(920px,100%);margin:auto;padding:20px 16px 50px}
+  .topline{text-align:center;text-transform:uppercase;letter-spacing:.22em;font:700 .7rem Arial,sans-serif;color:#a45c83;margin:8px 0 18px}
+  .hero{text-align:center;padding:26px 18px 34px;border:1px solid #ffffffbd;border-radius:30px;background:#fff9fccc;box-shadow:0 18px 60px #9c4c7620;backdrop-filter:blur(8px)}
+  .crown{font-size:clamp(3.2rem,12vw,5.6rem);filter:drop-shadow(0 8px 8px #b96a9440);animation:float 3s ease-in-out infinite}
+  @keyframes float{50%{transform:translateY(-9px) rotate(2deg)}}
+  h1{font-size:clamp(2.25rem,8vw,4.8rem);line-height:1.02;margin:12px 0;color:#a84679;font-weight:normal}
+  .subtitle{font-size:clamp(1rem,3vw,1.2rem);line-height:1.7;max-width:570px;margin:0 auto 22px}
+  .btn{border:0;border-radius:999px;padding:13px 20px;background:linear-gradient(120deg,#d85e9a,#ad65bd);color:white;box-shadow:0 8px 20px #ad65bd40;transition:transform .2s,box-shadow .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px #ad65bd50}
+  .btn.secondary{background:#fff;color:#a84679;border:1px solid #eab8d2;box-shadow:none}
+  .section{margin:22px 0;padding:24px 20px;border-radius:26px;background:#fff9fce8;border:1px solid #fff;box-shadow:0 12px 35px #9c4c7614}
+  h2{font-weight:normal;text-align:center;font-size:clamp(1.6rem,5vw,2.25rem);margin:0 0 12px;color:#a84679}
+  .center{text-align:center}
+  .letter{max-width:650px;margin:auto;font-size:1.08rem;line-height:1.9;text-align:center}
+  .letter .sign{color:#b94f89;font-style:italic;font-size:1.25rem}
+  .game-intro{line-height:1.65;text-align:center;margin:0 auto 18px;max-width:540px}
+  .gamebox{max-width:520px;margin:auto;background:linear-gradient(145deg,#fff,#fff0f8);border:1px dashed #e4a2c5;border-radius:22px;padding:18px}
+  .game-stats{display:flex;justify-content:space-between;gap:8px;font:700 .83rem Arial,sans-serif;color:#9d4e7b}
+  .game-board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+  .tile{min-height:82px;border:1px solid #f1c3da;border-radius:17px;background:#fff8fc;font-size:2rem;box-shadow:0 4px 0 #f0d4e2;transition:transform .15s,background .15s}
+  .tile:active{transform:scale(.96)}
+  .tile.found{background:#fff0b9;border-color:#f0ce6f}
+  .game-message{text-align:center;min-height:52px;line-height:1.55;margin:10px 0;color:#8e3c70}
+  .reward{display:none;text-align:center;padding:16px;border-radius:18px;background:#fff2bc;color:#795329;line-height:1.7}
+  .reward.show{display:block;animation:pop .45s ease}
+  @keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+  .footer{text-align:center;padding:24px 10px;color:#95577b;font-size:.9rem;line-height:1.8}
+  .footer .heart{color:#db5b98}
+  .music-note{font: .8rem Arial,sans-serif;opacity:.8;margin-top:12px}
+  .toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#6f355b;color:white;border-radius:999px;padding:10px 16px;font: .9rem Arial,sans-serif;transition:.3s;z-index:5;text-align:center;width:max-content;max-width:90vw}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  .confetti{position:fixed;top:-20px;z-index:9;pointer-events:none;animation:fall 2.8s linear forwards}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.1}}
+  @media(max-width:420px){.wrap{padding:12px 11px 32px}.hero{padding:25px 14px 28px}.section{padding:21px 14px}.tile{min-height:72px;font-size:1.8rem}.gamebox{padding:13px}}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<main class="wrap">
+  <div class="topline">A little note from your friend ✦ made just for you</div>
+  <section class="hero">
+    <div class="crown" aria-hidden="true">👑</div>
+    <h1>Welcome to<br>Aastha's Kingdom</h1>
+    <p class="subtitle">Today, the stars have a tiny announcement…<br><strong>their favourite princess deserves a little extra sparkle.</strong></p>
+    <button class="btn" id="openWish">Open your royal surprise ✨</button>
+    <div class="music-note">💗 No login, no downloads — just a little happiness.</div>
+  </section>
+
+  <section class="section" id="wish" hidden>
+    <h2>Happy Princess Day, Aastha! 💖</h2>
+    <div class="letter">
+      <p>Dear Aastha,</p>
+      <p>Here’s your official reminder that you don’t need a crown to make the world a little brighter. Keep being your lovely, funny, wonderful self — and never let a bad day convince you that you aren’t special.</p>
+      <p>Wishing you lots of laughter, peaceful days, magical little moments, and every reason to smile. May your own fairytale be full of good people, big dreams, and happy surprises. 🌷</p>
+      <p>Today’s royal rule: <strong>be kind to yourself, shine in your own way, and accept at least one compliment!</strong></p>
+      <p class="sign">Your friend, cheering for you ✨</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>✨ The Royal Star Hunt ✨</h2>
+    <p class="game-intro">Every princess deserves a little quest! Tap the tiles and find all <strong>3 hidden stars</strong>. You have 6 tries — a little luck and a little magic should do it. 🌟</p>
+    <div class="gamebox">
+      <div class="game-stats"><span>⭐ Stars: <span id="score">0</span>/3</span><span>🎯 Tries left: <span id="tries">6</span></span></div>
+      <div class="game-board" id="board" aria-label="Star hunt game board"></div>
+      <p class="game-message" id="gameMessage" aria-live="polite">Pick a tile to begin your royal quest!</p>
+      <div class="reward" id="reward">
+        <div style="font-size:2.3rem">🏆👑🌟</div>
+        <strong>ROYAL QUEST COMPLETE!</strong><br>
+        Aastha, you found every star! Your prize is this royal decree: you are officially allowed to have a lovely day, treat yourself kindly, and be ridiculously proud of yourself. 💗
+        <p><button class="btn secondary" id="playAgain">Play again ↻</button></p>
+      </div>
+      <div class="center"><button class="btn secondary" id="resetGame">Restart the hunt ↻</button></div>
+    </div>
+  </section>
+
+  <section class="section center">
+    <h2>One last little wish 🌸</h2>
+    <p class="subtitle">May your days be soft, your dreams be big, your snacks be delicious, and your group chats always be entertaining. You deserve good things, Aastha!</p>
+    <button class="btn" id="sendSparkles">Send some extra magic ✨</button>
+  </section>
+
+  <footer class="footer">
+    Made with a little friendship and a lot of pink. <span class="heart">♥</span><br>
+    <strong>Happy Princess Day, Aastha!</strong><br>
+    <span style="font-size:.78rem">A tiny corner of the internet, just to make you smile.</span>
+  </footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+  // Twinkling background stars
+  const sky = document.getElementById('sky');
+  for (let i=0; i<32; i++) {
+    const s = document.createElement('span');
+    s.className = 'spark';
+    s.textContent = ['✦','✧','⋆','♡'][Math.floor(Math.random()*4)];
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.fontSize = (10 + Math.random()*18) + 'px';
+    s.style.animationDelay = (Math.random()*3) + 's';
+    sky.appendChild(s);
+  }
+
+  const wish = document.getElementById('wish');
+  document.getElementById('openWish').addEventListener('click', () => {
+    wish.hidden = false;
+    wish.scrollIntoView({behavior:'smooth', block:'start'});
+    confetti(34);
+    showToast('A royal surprise for Aastha 💗');
+  });
+
+  let starPositions = [];
+  let found = new Set();
+  let tries = 6;
+  let ended = false;
+  const board = document.getElementById('board');
+  const scoreEl = document.getElementById('score');
+  const triesEl = document.getElementById('tries');
+  const msg = document.getElementById('gameMessage');
+  const reward = document.getElementById('reward');
+  const encouragement = ['A tiny sparkle! Keep going ✨','The kingdom believes in you 👑','You’re getting closer, princess 🌷','Magic can be sneaky… try another tile!'];
+
+  function setupGame() {
+    starPositions = [...Array(9).keys()].sort(() => Math.random() - .5).slice(0,3);
+    found = new Set(); tries = 6; ended = false;
+    scoreEl.textContent = '0'; triesEl.textContent = tries;
+    msg.textContent = 'Pick a tile to begin your royal quest!';
+    reward.classList.remove('show');
+    board.innerHTML = '';
+    for (let i=0;i<9;i++) {
+      const b = document.createElement('button');
+      b.className = 'tile'; b.type = 'button';
+      b.setAttribute('aria-label', 'Mystery tile ' + (i+1));
+      b.textContent = '❔';
+      b.addEventListener('click', () => chooseTile(i,b));
+      board.appendChild(b);
+    }
+  }
+  function chooseTile(i, button) {
+    if (ended || button.disabled) return;
+    button.disabled = true; tries--; triesEl.textContent = tries;
+    if (starPositions.includes(i)) {
+      button.textContent = '⭐'; button.classList.add('found'); found.add(i);
+      scoreEl.textContent = found.size;
+      msg.textContent = ['A star! Your sparkle radar is working! 🌟','You found a little piece of magic! ✨','Shiny! One step closer to your royal prize! 💛'][found.size-1];
+      if (found.size === 3) {
+        ended = true; msg.textContent = 'You did it, star finder! Your royal prize awaits below.';
+        reward.classList.add('show'); confetti(65);
+      }
+    } else {
+      button.textContent = ['🌸','🦋','💗'][Math.floor(Math.random()*3)];
+      msg.textContent = encouragement[Math.floor(Math.random()*encouragement.length)];
+    }
+    if (!ended && tries === 0) {
+      ended = true;
+      msg.textContent = 'The stars were shy this time — but every princess gets another quest. 💕';
+      starPositions.forEach(pos => {
+        const tile = board.children[pos];
+        if (!tile.classList.contains('found')) { tile.textContent = '⭐'; tile.classList.add('found'); }
+      });
+    }
+  }
+  document.getElementById('resetGame').addEventListener('click', setupGame);
+  document.getElementById('playAgain').addEventListener('click', () => {setupGame(); document.getElementById('board').scrollIntoView({behavior:'smooth',block:'center'});});
+  function showToast(text) {
+    const toast = document.getElementById('toast');
+    toast.textContent = text; toast.classList.add('show');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+  function confetti(count) {
+    const colors = ['#f07eb5','#f7d36f','#bda2f3','#a6dfce','#ffffff'];
+    for (let i=0;i<count;i++) {
+      const c = document.createElement('span');
+      c.className = 'confetti'; c.textContent = ['✦','♥','✧','•'][Math.floor(Math.random()*4)];
+      c.style.left = Math.random()*100 + 'vw';
+      c.style.color = colors[Math.floor(Math.random()*colors.length)];
+      c.style.fontSize = (12+Math.random()*18)+'px';
+      c.style.animationDuration = (1.8+Math.random()*1.8)+'s';
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),4000);
+    }
+  }
+  document.getElementById('sendSparkles').addEventListener('click', () => {
+    confetti(75); showToast('A whole pocketful of magic for Aastha ✨💖');
+  });
+  setupGame();
+</script>
+</body>
+</html>
